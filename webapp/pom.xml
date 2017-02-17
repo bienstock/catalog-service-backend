@@ -25,8 +25,8 @@
 	</repositories>
 	
     <properties>
-        <marmotta.home>/tmp/nimble</marmotta.home>
-        <marmotta.context>/catalog</marmotta.context>
+        <marmotta.home>/data/nimble</marmotta.home>
+        <marmotta.context>/catalog-service</marmotta.context>
         <marmotta.port>8084</marmotta.port>
         <marmotta.backend>kiwi</marmotta.backend>
 
