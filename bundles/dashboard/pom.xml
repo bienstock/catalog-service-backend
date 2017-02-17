@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>eu.nimble.services.catalog</groupId>
+		<artifactId>bundles</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+    <artifactId>dashboard</artifactId>
+    <packaging>jar</packaging>
+
+    <name>NIMBLE Catalog Search Dashboard</name>
+    <description>Main module wrapping some other stuff</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.marmotta</groupId>
+            <artifactId>marmotta-core</artifactId>
+            <version>${marmotta.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.marmotta</groupId>
+            <artifactId>marmotta-sparql</artifactId>
+            <version>${marmotta.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.marmotta</groupId>
+            <artifactId>marmotta-ldp</artifactId>
+            <version>${marmotta.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

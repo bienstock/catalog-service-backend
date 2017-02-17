@@ -12,6 +12,7 @@
 	<modules>
 		
 		
+   		<module>dashboard</module>
 
    		<module>identity-provider</module>
    		<!--  include third -party libs -->
