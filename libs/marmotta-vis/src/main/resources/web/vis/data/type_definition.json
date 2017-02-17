@@ -1,0 +1,146 @@
+{
+	"nodeTypes":[
+		{
+			"type":"QUESTION",
+			"label":"Question",
+			"display":"Text",
+			"properties":[
+				{
+					"label":"Text",
+					"type":"STRING",
+					"required":true,
+					"placeholder":"e.g. How are you feeling today?"
+				}
+			],
+			"color":"#003366",
+			"image":"img/question.png"
+		},
+		{
+			"type":"CONTENT",
+			"label":"Content",
+			"display":"Type",
+			"properties":[
+				{
+					"label":"Type",
+					"type":"SELECT",
+					"required":true,
+					"options":[
+						"Recommendation",
+						"Goal",
+						"Activity",
+						"Page",
+						"Static Content"
+					]
+				},
+				{
+					"label":"Text or Link",
+					"type":"STRING",
+					"required":true,
+					"placeholder":"e.g. Increase your dose gradually",
+					"tooltip":"If you want to annotate multiple values separate them by using new lines"				
+				}
+			],
+			"color":"#993399",
+			"image":"img/content.png"
+		},
+		{
+			"type":"CONDITION",
+			"label":"Condition",
+			"display":"Property",
+			"properties":[
+				{
+					"label":"Property",
+					"type":"STRING",
+					"required":true,
+					"placeholder":"e.g. Blood Glucose Value"
+				},
+				{
+					"label":"Value",
+					"type":"STRING",
+					"required":true,
+					"placeholder":"e.g. [0,80)||(130,Inf]",
+					"tooltip":"If you want to annotate multiple values separate them by using ||<br/>e.g.Type 2||Gestational<br/><br/>If you want to annotate numeric intervals use the <a href='https://en.wikipedia.org/wiki/Interval_(mathematics)#Notations_for_intervals' target='_blank'>mathematical bracket notation</a><br/>e.g. [20,35) for the values 20 (included) to 35 (excluded)"
+				},
+				{
+					"label":"Time Interval",
+					"type":"STRING",
+					"required":false,
+					"placeholder":"e.g. [P1M,P0S)",
+					"tooltip":"If this is set all values of the defined time interval will be observed.<br/>Use the <a href='https://en.wikipedia.org/wiki/ISO_8601#Durations' target='_blank'>ISO 8601 notation</a><br/>e.g. [P1M,P0S) for one month ago (included) until now (aka. 0 seconds ago, excluded)"
+				},
+				{
+					"label":"Modifier",
+					"type":"SELECT",
+					"required":false,
+					"options":[
+						"Average",
+						"Minimum",
+						"Maximum"
+					],
+					"tooltip":"Defines the mathematical method applied to the values within the given time interval"
+				}
+			],
+			"color":"#6699FF",
+			"image":"img/condition.png"
+		},
+		{
+			"type":"TRIGGER",
+			"label":"Trigger",
+			"display":"Name",
+			"properties":[
+				{
+					"label":"Name",
+					"type":"STRING",
+					"required":true
+				},
+				{
+					"label":"Time",
+					"type":"STRING",
+					"required":false,
+					"placeholder":"e.g. P1W",
+					"tooltip":"If this is set the trigger will be called periodically.<br/>Use the <a href='https://en.wikipedia.org/wiki/ISO_8601#Durations' target='_blank'>ISO 8601 notation</a><br/>e.g. P1W for once a week"
+				}
+			],
+			"color":"#ff9933",
+			"image":"img/trigger.png"
+		},
+		{
+			"type":"ACTION",
+			"label":"Action",
+			"display":"Triggers",
+			"properties":[
+				{
+					"label":"Triggers",
+					"type":"STRING",
+					"required":true
+				}
+			],
+			"color":"#993333",
+			"image":"img/action.png"
+		}
+	],
+	"edgeTypes":[
+		{
+			"type":"ANSWER",
+			"label":"Answer",
+			"display":"Text",
+			"properties":[
+				{
+					"label":"Text",
+					"type":"STRING",
+					"required":true,
+					"placeholder":"e.g. Type 2",
+					"tooltip":"If you want to annotate numeric intervals use the <a href='https://en.wikipedia.org/wiki/Interval_(mathematics)#Notations_for_intervals' target='_blank'>mathematical bracket notation</a><br/>e.g. [20,35) for the values 20 (included) to 35 (excluded)"
+				}
+			],
+			"color":"#99CCFF"
+		},
+		{
+			"type":"FORWARD",
+			"label":"Forward",
+			"display":"",
+			"properties":[],
+			"color":"#AAAAAA"
+		}
+	]
+}

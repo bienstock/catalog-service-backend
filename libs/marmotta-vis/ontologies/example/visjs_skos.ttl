@@ -1,0 +1,233 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+#@prefix inloc: <http://purl.org/net/inloc/> .
+#@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+#@prefix eagle: <http://knowledge.eagle-learning.eu/base#> .
+#@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+#namespace für "vis-Tool"
+@prefix vo: <http://www.salzburgresearch.at/vis#> .
+
+@prefix vis: <http://www.salzburgresearch.at/vskos/> .
+
+#
+# Meta Information for the Visualizer Project, specifies the appearance of the 
+# Visualizer Interface itself
+#
+
+vis:SkosNetwork a vo:Network;
+	# name the project
+	rdfs:label "SRFG Visualizer Network - SKOS"@en;
+	rdfs:label "SRFG Visualizer Netzwerk - SKOS"@de;
+	# add some description
+	rdfs:comment "Project Structure for the SRFG Visualizer Network"@en;
+	rdfs:comment "Defintion für Simple-Knowledge-Organisation-Structures (SKOS) Terminologien"@de;
+	# default language
+	vo:language "en"^^xsd:language;
+	# list of available languages
+	vo:hasLanguage "en"^^xsd:language;
+	vo:hasLanguage "de"^^xsd:language;
+	# structure should not be editable
+	vo:editable "true"^^xsd:boolean;
+	# the rdf:type to use when searching for instances
+	vo:visType skos:ConceptScheme;
+	# the rdf:type(s) to use when creating new instances
+	vo:rdfType skos:ConceptScheme;
+	vo:labelProperty vis:PrefLabelProperty;
+	vo:descriptionProperty vis:SkosDefinitionProperty;
+	# the list of vis:NodeType(s)
+	vo:hasType vis:ConceptNode, vis:ConceptSchemeNode;
+	vo:hasEdge vis:broaderEdge, vis:narrowerEdge, vis:hasTopLevelEdge, vis:topLevelEdge, vis:relatedEdge;
+	# the association of any node to the network
+	vo:inNetwork skos:inScheme;
+	# relationship of a ConceptNode to the ConceptScheme Node
+	# outlining a direct (top-level) relationship - not needed, taken from the edgeTypes
+	# vo:networkAssigned skos:topConceptOf, skos:hasTopConcept;
+	# relationships which must not exist for any node in the network
+	# to denote a node a "unassigned" in the network
+	vo:toChildren skos:narrower;
+	# date created of the structure
+	dcterms:created "2016-08-30T19:44:39.000+02:00"^^xsd:dateTime ;
+	
+	.
+vis:ConceptSchemeNode a vo:NodeType;
+	# name the node type
+	rdfs:label "Concept Scheme"@en;
+	rdfs:label "Vokabular"@de;
+	# add some description
+	rdfs:comment "Concept-Scheme"@en;
+	rdfs:comment "Vokabular"@de;
+	# denote the type when searching for instances
+	vo:visType skos:ConceptScheme;
+	vo:image "img/network.png";
+	vo:color "#003366";
+	# assign the type to a network
+	vo:isTypeOf vis:SkosNetwork;
+	vo:labelProperty vis:RdfsLabelProperty;
+	vo:descriptionProperty vis:RdfsCommentProperty;
+	# the list of properties
+	vo:hasProperty vis:RdfsLabelProperty, vis:RdfsCommentProperty, vis:CreatedProperty;
+	dcterms:created "2016-08-30T19:44:39.000+02:00"^^xsd:dateTime ;
+	.
+vis:ConceptNode a vo:NodeType;
+	# name the node type
+	rdfs:label "Concept"@en;
+	rdfs:label "Konzept"@de;
+	# add some description
+	rdfs:comment "Concept"@en;
+	rdfs:comment "Konzept"@de;
+	# denote the type when searching for instances
+	vo:visType skos:Concept;
+	vo:image "img/network.png";
+	vo:color "#003366";
+	vo:labelProperty vis:PrefLabelProperty;
+	vo:descriptionProperty vis:SkosDefinitionProperty;
+	# assign the type to a network
+	vo:isTypeOf vis:SkosNetwork;
+	# the list of properties
+	vo:hasProperty vis:RdfsLabelProperty, vis:RdfsCommentProperty, vis:CreatedProperty, vis:PrefLabelProperty, vis:SkosDefinitionProperty;
+	dcterms:created "2016-08-30T19:44:39.000+02:00"^^xsd:dateTime ;
+	.
+
+vis:broaderEdge a vo:EdgeType;
+	rdfs:label "Broader"@en;
+	vo:sourceNodeType vis:ConceptNode;
+	vo:targetNodeType vis:ConceptNode;
+	vo:visType skos:broader;
+	vo:inverseOfEdge vis:narrowerEdge;
+	vo:isEdgeOf vis:SkosNetwork;
+	vo:color "#003366";
+	.
+vis:narrowerEdge a vo:EdgeType;
+	rdfs:label "Property used with Type"@en;
+	vo:sourceNodeType vis:ConceptNode;
+	vo:targetNodeType vis:ConceptNode;
+	vo:visType skos:narrower;
+	vo:inverseOfEdge vis:broaderEdge;
+	vo:isEdgeOf vis:SkosNetwork;
+	vo:color "#003366";
+	.
+vis:topLevelEdge a vo:EdgeType;
+	rdfs:label "Is Top-Concept of"@en;
+	vo:sourceNodeType vis:ConceptNode;
+	vo:targetNodeType vis:ConceptSchemeNode;
+	vo:visType skos:topConceptOf;
+	vo:inverseOfEdge vis:hasTopLevelEdge;
+	vo:isEdgeOf vis:SkosNetwork;
+	vo:color "#003366";
+	.
+vis:hasTopLevelEdge a vo:EdgeType;
+	rdfs:label "has Top-Concept"@en;
+	vo:sourceNodeType vis:ConceptSchemeNode;
+	vo:targetNodeType vis:ConceptNode;
+	vo:visType skos:hasTopConcept;
+	vo:inverseOfEdge vis:topLevelEdge;
+	vo:isEdgeOf vis:SkosNetwork;
+	vo:color "#003366";
+	.
+
+#
+# node type properties
+#
+vis:RdfsLabelProperty a vo:StringPropertyType, vo:PropertyType;
+	# name the property type
+	rdfs:label "Title"@en;
+	# add some description
+	rdfs:comment "Add some title"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType rdfs:label;
+	vo:dataType "STRING";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "true"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:ConceptNode; 
+.
+#
+# node type properties
+#
+vis:PrefLabelProperty a vo:StringPropertyType, vo:PropertyType;
+	# name the property type
+	rdfs:label "Title"@en;
+	# add some description
+	rdfs:comment "Add some title"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType skos:prefLabel;
+	vo:dataType "STRING";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "true"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:ConceptNode; 
+.
+#
+# node type properties
+#
+vis:SkosDefinitionProperty a vo:StringPropertyType, vo:PropertyType;
+	# name the property type
+	rdfs:label "Definition"@en;
+	# add some description
+	rdfs:comment "SKOS Definition"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType skos:definition;
+	vo:dataType "STRING";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "true"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:ConceptNode; 
+.
+vis:relatedEdge a vo:EdgeType;
+	rdfs:label "Related"@en;
+	vo:sourceNodeType vis:ConceptNode;
+	vo:targetNodeType vis:ConceptNode;
+	vo:visType skos:related;
+	vo:isEdgeOf vis:SkosNetwork;
+	vo:color "#003366";
+	.
+vis:RdfsCommentProperty a vo:TextPropertyType, vo:PropertyType;
+	# name the property type
+	rdfs:label "Comment"@en;
+	# add some description
+	rdfs:comment "Add some title"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType rdfs:comment;
+	vo:dataType "TEXTAREA";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "true"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:ConceptNode; 
+	.
+
+vis:CreatedProperty a vo:DatePropertyType, vo:PropertyType;
+	rdfs:label "Date Created"@en;
+	rdfs:label "Erstelldatum"@en;
+	# add some description
+	rdfs:comment "Date of resource creation"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType dcterms:created;
+	vo:dataType "DATE";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "false"^^xsd:boolean;
+	vo:required "false"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:ConceptNode; 
+	. 
+#
+# edge type properties
+#
+	

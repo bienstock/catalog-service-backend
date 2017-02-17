@@ -1,0 +1,9 @@
+[submodule "libs/sesame-vocab-builder"]
+	path = libs/sesame-vocab-builder
+	url = https://github.com/dglachs/sesame-vocab-builder
+[submodule "libs/skosjs"]
+	path = libs/skosjs
+	url = https://github.com/tkurz/skosjs
+[submodule "libs/alibaba"]
+	path = libs/alibaba
+	url = https://bitbucket.org/openrdf/alibaba

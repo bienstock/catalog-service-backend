@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.11" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="org.apache.marmotta.knowledge.vis.dao.Type" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/Type.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="335" width="185" x="357" y="668"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.apache.marmotta.knowledge.vis.dao.EdgeType" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/EdgeType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="299" width="212" x="-111" y="1490"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.apache.marmotta.knowledge.vis.dao.NetworkType" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/NetworkType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="83" width="158" x="-111" y="1043"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.apache.marmotta.knowledge.vis.dao.InstanceWithProperties" 
+    project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/InstanceWithProperties.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="209" width="293" x="638" y="1043"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.apache.marmotta.knowledge.vis.dao.Graph" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/Graph.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="137" width="192" x="125" y="668"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.apache.marmotta.knowledge.vis.dao.Property" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/Property.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="353" width="181" x="1035" y="1490"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.apache.marmotta.knowledge.vis.dao.PropertyType" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/PropertyType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="389" width="259" x="400" y="1883"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.apache.marmotta.knowledge.vis.dao.Instance" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/Instance.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="299" width="158" x="806" y="668"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="org.apache.marmotta.knowledge.vis.dao.NodeType" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/NodeType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="263" width="238" x="141" y="1490"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="org.apache.marmotta.knowledge.vis.dao.Base" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/Base.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="371" width="166" x="357" y="257"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="11" language="java" name="org.apache.marmotta.knowledge.vis.dao.DisplayTypeEnum" 
+    project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/DisplayTypeEnum.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="263" width="199" x="280" y="2312"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="12" language="java" name="org.apache.marmotta.knowledge.vis.dao.Property" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/Property.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="173" width="224" x="971" y="1043"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="org.apache.marmotta.knowledge.vis.dao.Edge" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/Edge.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="191" width="158" x="440" y="1043"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="org.apache.marmotta.knowledge.vis.dao.NetworkType" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/NetworkType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="407" width="228" x="108" y="1043"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="org.apache.marmotta.knowledge.vis.dao.PropertyTypeOption" project="knowledge-vis" 
+    file="/knowledge-vis/src/main/java/org/apache/marmotta/knowledge/vis/dao/PropertyTypeOption.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="191" width="163" x="519" y="2312"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="17">    
+    <bendpoint x="77" y="1043"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="18">    
+    <bendpoint x="1225" y="1043"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="22">    
+    <bendpoint x="409" y="1490"/>    
+    <bendpoint x="409" y="1043"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="23">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="24" name="nodeTypes">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="27" name="edgeTypes">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="30">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="31" name="options">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="34" name="displayType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -1,0 +1,320 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+#@prefix inloc: <http://purl.org/net/inloc/> .
+#@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix eagle: <http://knowledge.eagle-learning.eu/base#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+#namespace für "vis-Tool"
+@prefix vis: <http://www.salzburgresearch.at/vis#> .
+
+@prefix meta: <http://www.salzburgresearch.at/vmeta/> .
+
+# 
+vis:Resource rdf:type rdfs:Class, owl:Class;
+	rdfs:label "Resource in the VIS context"@en;
+	rdfs:comment "(Abstract) super class for VisProject, VisType etc."
+	.
+
+vis:Graph rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Graph containing Networks";
+	rdfs:comment "Container for various networks";
+	.
+	
+vis:Network rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Network type Instance";
+	rdfs:comment "Provides configurable environment for building networks";
+	.
+
+vis:NodeType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Vis type Instance"@en;
+	rdfs:comment "Instances of this type are listed when adding new elements!"@en;
+	.
+
+vis:EdgeType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Vis edge Instance"@en;
+	rdfs:comment "Instances of this property are listed when adding a connection between elements"@en;
+	.
+
+vis:PropertyType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Vis Property"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+vis:PropertyValueType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Vis Property Value"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+
+vis:DatePropertyType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Date Property"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+vis:StringPropertyType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "String Property"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+vis:TextPropertyType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Textarea Property"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+vis:SelectPropertyType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Select Box Property"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+
+vis:CheckboxPropertyType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Checkbox Property"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+vis:RadioPropertyType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Radio Property"@en;
+	rdfs:comment "Used to provide editing helpers"@en;
+	.
+
+vis:DataType rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Data Type"@en;
+	rdfs:comment "Specifies Data"@en;
+	.
+
+vis:VisPropertyValue rdf:type rdfs:Class, owl:Class;
+	rdfs:subClassOf vis:Resource;
+	rdfs:label "Vis Property Value"@en;
+	.
+
+vis:hasType rdf:type rdf:Property, owl:InverseFunctionalProperty;
+	rdfs:label "Types in Project"@en;
+	rdfs:range vis:NodeType;
+	rdfs:domain vis:Network;
+	owl:inverseOf vis:isTypeOf;
+	.
+
+vis:isTypeOf rdf:type rdf:Property, owl:InverseFunctionalProperty;
+	rdfs:label "Project using this type"@en;
+	rdfs:range vis:Network;
+	rdfs:domain vis:NodeType;
+	owl:inverseOf vis:hasType;
+	.
+	
+vis:hasEdge rdf:type rdf:Property, owl:ObjectProperty;
+	rdfs:label "Edges in Project"@en;
+	rdfs:range vis:NodeType;
+	rdfs:domain vis:Network;
+	owl:inverseOf vis:isEdgeOf;
+	.
+vis:isPropertyOf rdf:type rdf:Property, owl:ObjectProperty;
+	rdfs:label "NodeType using this property"@en;
+	rdfs:range vis:NodeType;
+	rdfs:domain vis:PropertyType;
+	owl:inverseOf vis:hasProperty;
+	.
+vis:hasProperty rdf:type rdf:Property, owl:ObjectProperty;
+	rdfs:label "Properties for a type"@en;
+	rdfs:range vis:PropertyType;
+	rdfs:domain vis:NodeType;
+	owl:inverseOf vis:isPropertyOf;
+	.
+vis:isPropertyValueOf rdf:type rdf:Property, owl:ObjectProperty;
+	rdfs:label "NodeType using this property"@en;
+	rdfs:domain vis:PropertyValueType;
+	rdfs:range vis:PropertyType;
+	owl:inverseOf vis:hasPropertyValue;
+	.
+vis:hasPropertyValue rdf:type rdf:Property, owl:ObjectProperty;
+	rdfs:label "Properties for a type"@en;
+	rdfs:domain vis:PropertyType;
+	rdfs:range vis:PropertyValueType;
+	owl:inverseOf vis:isPropertyValueOf;
+	.
+vis:isEdgeOf rdf:type rdf:Property, owl:ObjectProperty;
+	rdfs:label "Network using this edge"@en;
+	rdfs:range vis:Network;
+	rdfs:domain vis:NodeType;
+	owl:inverseOf vis:hasEdge;
+	.
+	
+vis:language rdf:type rdf:Property, owl:FunctionalProperty;
+	rdfs:label "Default Language"@en;
+	rdfs:range xsd:language;
+	rdfs:domain vis:Network;
+	.
+
+vis:hasLanguage rdf:type rdf:Property;
+	rdfs:label "Language in Network"@en;
+	rdfs:range xsd:language;
+	rdfs:domain vis:Network;
+	.
+
+
+vis:domain rdf:type owl:FunctionalProperty, owl:DatatypeProperty;
+	rdfs:label "Data domain of properties (for editing)"@en;
+	rdfs:domain vis:NodeType;
+	rdfs:range rdfs:Class;
+	.
+vis:labelProperty rdf:type rdf:Property;
+	rdfs:label "Label property type"@en;
+	rdfs:comment "Property specifying the data type for the label"@en;
+	rdfs:domain vis:Resource;
+	rdfs:range vis:PropertyType;
+	. 
+vis:descriptionProperty rdf:type rdf:Property;
+	rdfs:label "Description property type"@en;
+	rdfs:comment "Property specifying the property type for the description"@en;
+	rdfs:domain vis:Resource;
+	rdfs:range vis:PropertyType;
+	. 
+vis:multiValue rdf:type owl:FunctionalProperty, owl:DatatypeProperty;
+	rdfs:label "Multiple Values"@en;
+	rdfs:comment "Specify, whether multiple values of a particular property are allowed"@en;
+	rdfs:domain vis:PropertyType;
+	rdfs:range xsd:boolean;
+	.
+
+vis:multiLingual rdf:type owl:FunctionalProperty, owl:DatatypeProperty;
+	rdfs:label "Multi-Language"@en;
+	rdfs:comment "Specify, whether multiple languages of a particular property are maintained"@en;
+	rdfs:domain vis:PropertyType;
+	rdfs:range xsd:boolean;
+	.
+
+vis:editable rdf:type owl:FunctionalProperty, owl:DatatypeProperty;
+	rdfs:label "Editable"@en;
+	rdfs:comment "Is the vis object editable or view-only?"@en;
+	rdfs:domain vis:Resource;
+	rdfs:range xsd:boolean;
+	.
+
+vis:required rdf:type owl:FunctionalProperty, owl:DatatypeProperty;
+	rdfs:label "Required"@en;
+	rdfs:comment "Is the property required or optional?"@en;
+	rdfs:domain vis:Resource;
+	rdfs:range xsd:boolean;
+	.
+
+vis:inputFormat rdf:type owl:FunctionalProperty, owl:DatatypeProperty;
+	rdfs:label "HTML input type"@en;
+	rdfs:comment "Helper property for controlling HTML input fields"@en;
+	rdfs:domain vis:PropertyType;
+	rdfs:range xsd:string;
+	.
+vis:visType a rdf:Property, owl:FunctionalProperty ;
+	rdfs:label "Main rdf:type"@en;
+    rdfs:comment "The rdf:type to use when working with instances."@en ;
+    rdfs:label "Type"@en ;
+    rdfs:domain vis:Resource;
+    rdfs:range xsd:string;
+    .
+
+vis:rdfType a rdf:Property ;
+	rdfs:label "RDF Class Type"@en;
+    rdfs:comment "The rdf:type(s) to be used when creating the real instance."@en ;
+    rdfs:label "Type"@en ;
+    rdfs:range rdfs:Class ;
+    .
+
+vis:edgeType a rdf:Property ;
+    rdfs:label "Edge Type"@en ;
+    rdfs:comment "The rdf:property(s) to be used when creating the real instance."@en ;
+    rdfs:range rdf:Property ;
+    .
+
+vis:sourceNodeType a rdf:Property ;
+	rdfs:comment "The rdf:type of the source node, for which the edge is applicable"@en ;
+	rdfs:label "RDF Type of the source node element"@en;
+	rdfs:domain vis:EdgeType;
+	rdfs:range vis:NodeType;	
+	.
+
+vis:targetNodeType a rdf:Property ;
+	rdfs:comment "The rdf:type of the source node, for which the edge is applicable"@en ;
+	rdfs:label "RDF Type of the source node element"@en;
+	vis:property rdf:type;
+	rdfs:domain vis:EdgeType;
+	rdfs:range vis:Resource;	
+	.
+
+vis:property a rdf:Property ;
+	rdfs:label "Value Property"@en;
+	rdfs:domain vis:PropertyType;
+	rdfs:range rdf:Property;
+	.
+
+vis:dataType a rdf:Property, owl:FunctionalProperty;
+    rdfs:comment "The rdf:type(s) to be used when creating the real instance."@en ;
+    rdfs:label "Data Type"@en ;
+    rdfs:domain vis:PropertyType;
+    rdfs:range rdfs:Class ;
+    rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/type> 
+    .
+
+vis:inverseOfEdge a rdf:Property, owl:FunctionalProperty;
+    rdfs:comment "attribute pointing to the inverse edge"@en ;
+    rdfs:label "Inverse Of"@en ;
+    rdfs:domain vis:EdgeType;
+    rdfs:range vis:EdgeType ;
+    .
+   
+vis:inNetwork a rdf:Property, owl:FunctionalProperty;
+	rdfs:label "Link to container";
+	rdfs:comment "property used to associate a node type instance with it's network container (e.g. skos:inScheme for skos:Concept in SKOS Vocabularies)"@en;
+	rdfs:domain vis:Network;
+	rdfs:range xsd:string;
+	.
+vis:networkAssigned a rdf:Property, owl:FunctionalProperty;
+	rdfs:label "Link from a (top-level) node to the container outlining a start point for a hierarchy";
+	rdfs:comment "property used by the network to name the initial set of contained nodes (e.g. skos:topConceptOf for SKOS Concepts)"@en;
+	rdfs:domain vis:Network;
+	rdfs:range xsd:string;
+	.
+vis:toParent a rdf:Property, owl:ObjectProperty;
+	rdfs:label "Property to express a bottom-up hierarchy in a network"@en;
+	rdfs:comment "Property used for building hierarchical networks."@en;
+	rdfs:domain vis:Network;
+	rdfs:range xsd:anyURI;
+	.
+vis:toChildren a rdf:Property, owl:ObjectProperty;
+	rdfs:label "Property to express a top-down hierarchy in a network"@en;
+	rdfs:comment "Property used for building hierarchical networks."@en;
+	rdfs:domain vis:Network;
+	rdfs:range xsd:anyURI;
+	.
+
+vis:networkUnassigned a rdf:Property, owl:FunctionalProperty;
+	rdfs:label "Required 'missing, non existing' link(s) for a node to be qualified as 'unassigned, free' in the network "@en;
+	rdfs:comment "Any of the relations MUST not exist for a node to be considered 'unassigned' in the network"@en;
+	rdfs:domain vis:Network;
+	rdfs:range xsd:string;
+	.
+
+vis:color a rdf:Property;
+	rdfs:label "Color";
+	rdfs:range xsd:string;
+	.
+
+vis:image a rdf:Property;
+	rdfs:label "Image";
+	rdfs:range xsd:string;
+	.
+
+vis:tooltip a rdf:Property;
+	rdfs:label "Hint to be displayed on mouse over";
+	.
+	
+vis:placeholder a rdf:Property;
+	rdfs:label "Hint to be displayed for editing";
+	.

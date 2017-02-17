@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>eu.nimble.services.catalog</groupId>
+		<artifactId>marmotta-platform</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>bundles</artifactId>
+	<packaging>pom</packaging>
+	<name>Bundles for Catalog Services</name>
+	<modules>
+		
+		
+
+   		<module>identity-provider</module>
+   		<!--  include third -party libs -->
+		<module>../libs/marmotta-alibaba</module>
+		<!-- use selected/required alibaba modules -->
+		<module>../libs/alibaba/object-composition</module> 
+		<module>../libs/alibaba/object-repository</module> 
+		<module>../libs/alibaba/blob-store</module>
+		<!--  marmotta graph visualization --> 
+   		<module>../libs/marmotta-vis</module>
+   		<!--  semantic search module including dependencies -->
+   		<module>../libs/marmotta-search</module>
+   		<module>../libs/marmotta-utils</module>
+   		<module>../libs/marmotta-worker</module>
+   		<!--  skos editor (to be replaced by marmotta-vis) -->
+   		<module>../libs/marmotta-skos</module>
+   		<module>../libs/skosjs</module>
+		<!-- seame vocab builder required for build -->
+		<module>../libs/sesame-vocab-builder</module>
+	</modules>
+</project>

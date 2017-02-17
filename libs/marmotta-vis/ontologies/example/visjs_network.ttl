@@ -1,0 +1,387 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+#namespace für "vis-Tool"
+@prefix vo: <http://www.salzburgresearch.at/vis#> .
+
+@prefix vis: <http://www.salzburgresearch.at/vmeta/> .
+
+#
+# Meta Information for the Visualizer Project, specifies the appearance of the 
+# Visualizer Interface itself
+#
+
+vis:VisNetwork a vo:Network;
+	# name the project
+	rdfs:label "SRFG Visualizer Network"@en;
+	# add some description
+	rdfs:comment "Project Structure for the SRFG Visualizer Network"@en;
+	# default language
+	vo:language "en"^^xsd:language;
+	# list of available languages
+	vo:hasLanguage "en"^^xsd:language, "de"^^xsd:language;
+	# structure should not be editable
+	vo:editable "false"^^xsd:boolean;
+	# the rdf:type to use when searching for instances
+	vo:visType vo:Network;
+	# the rdf:type(s) to use when creating new instances
+	vo:rdfType vo:Network;
+	vo:labelProperty vis:RdfsLabelProperty;
+	# the list of vis:NodeType(s)
+	vo:hasType vis:VisNetworkNode, vis:VisNodeType, vis:VisEdgeType, vis:VisPropertyType;
+	vo:hasEdge vis:sourceTypeEdge, vis:targetTypeEdge, vis:hasPropertyEdge, vis:isPropertyOfEdge;
+	vo:inNetwork vo:inNetwork;
+	vo:toChildren vo:hasType, vo:hasEdge;
+	dcterms:created "2016-08-30T19:44:39.000+02:00"^^xsd:dateTime ;
+	
+	.
+
+vis:VisNetworkNode a vo:NodeType;
+	# name the node type
+	rdfs:label "Network"@en;
+	rdfs:label "Netzwerk"@de;
+	# add some description
+	rdfs:comment "Element defining a network"@en;
+	rdfs:comment "Netzwerk-Element als Root-Node"@de;
+	# denote the type when searching for instances
+	vo:visType vo:Network;
+	vo:image "img/network.png";
+	vo:color "#003366";
+	# assign the type to a network
+	vo:isTypeOf vis:VisNetwork;
+	vo:inNetwork vis:VisNetwork;
+	# the list of properties
+	vo:hasProperty vis:RdfsLabelProperty, vis:RdfsCommentProperty, vis:CreatedProperty;
+	dcterms:created "2016-08-30T19:44:39.000+02:00"^^xsd:dateTime ;
+	.
+
+vis:VisNodeType a vo:NodeType;
+	# name the node type
+	rdfs:label "Node"@en;
+	# some description
+	rdfs:comment "Element defining a node in a network!"@en;
+	# denote the type when searching for instances
+	vo:visType vo:NodeType;
+	# assign the type to the network 
+	vo:isTypeOf vis:VisNetwork;
+	vo:inNetwork vis:VisNetwork;
+	# the list of properties for this node type
+	vo:hasProperty vis:RdfsLabelProperty, vis:RdfsCommentProperty, vis:ColorProperty, vis:ImageProperty, vis:CreatedProperty;
+	vo:image "img/node.png";
+	vo:color "#003366";
+	.
+
+vis:VisEdgeType a vo:NodeType;
+	# name the node type
+	rdfs:label "Edge"@en;
+	rdfs:comment "Element defining an edge in a network!"@en;
+	vo:visType vo:EdgeType;
+	# assign this type to the network
+	vo:isTypeOf vis:VisNetwork;
+	vo:inNetwork vis:VisNetwork;
+	vo:hasProperty vis:RdfsLabelProperty, vis:RdfsCommentProperty, vis:ColorProperty, vis:CreatedProperty;
+	vo:image "img/edge.png";
+	vo:color "#003366";
+	.
+vis:VisPropertyType a vo:NodeType;
+	# name the node type
+	rdfs:label "Property"@en;
+	rdfs:comment "Element defining property for a type in a network!"@en;
+	vo:visType vo:PropertyType;
+	# assign this type to the network
+	vo:isTypeOf vis:VisNetwork;
+	vo:inNetwork vis:VisNetwork;
+	vo:hasProperty vis:RdfsLabelProperty, vis:RdfsCommentProperty, vis:MultiValueProperty, 
+		vis:MultiLanguageProperty, vis:IsRequiredProperty, vis:IsEditableProperty, vis:DisplayTypeProperty;
+	vo:image "img/property.png";
+	vo:color "#003366";
+	.
+
+vis:VisPropertyValueType a vo:NodeType;
+	rdfs:label "Property Value"@en;
+	rdfs:comment "Element defining property value for a type in a network!"@en;
+	vo:visType vo:PropertyType;
+	# assign this type to the network
+	vo:isTypeOf vis:VisNetwork;
+	vo:inNetwork vis:VisNetwork;
+	vo:hasProperty vis:RdfsLabelProperty, vis:RdfsCommentProperty;
+	vo:image "img/property_value.png";
+	vo:color "#003366";
+	.	
+vis:sourceTypeEdge a vo:EdgeType;
+	rdfs:label "Use Type as Source"@en;
+	vo:sourceNodeType vis:VisNodeType;
+	vo:targetNodeType vis:VisEdgeType;
+	vo:visType vo:sourceNodeType;
+	vo:isEdgeOf vis:VisNetwork;
+
+	.
+
+vis:targetTypeEdge a vo:EdgeType;
+	rdfs:label "Allow Type as Target"@en;
+	vo:sourceNodeType vis:VisEdgeType;
+	vo:targetNodeType vis:VisNodeType;
+	vo:visType vo:targetNodeType;
+	vo:isEdgeOf vis:VisNetwork;
+#	vo:inNetwork vis:VisNetwork;
+	vo:color "#003366";
+	.
+
+vis:hasPropertyEdge a vo:EdgeType;
+	rdfs:label "Type has Property"@en;
+	vo:sourceNodeType vis:VisNodeType;
+	vo:targetNodeType vis:VisPropertyType;
+	vo:visType vo:hasProperty;
+	vo:inverseOfEdge vis:isPropertyOfEdge;
+	vo:isEdgeOf vis:VisNetwork;
+#	vo:inNetwork vis:VisNetwork;
+	vo:color "#003366";
+	.
+vis:isPropertyOfEdge a vo:EdgeType;
+	rdfs:label "Property used with Type"@en;
+	vo:sourceNodeType vis:VisNodeType;
+	vo:targetNodeType vis:VisPropertyType;
+	vo:visType vo:isPropertyOf;
+	vo:inverseOfEdge vis:hasPropertyEdge;
+	vo:isEdgeOf vis:VisNetwork;
+#	vo:inNetwork vis:VisNetwork;
+	vo:color "#003366";
+	.
+
+#
+# node type properties
+#
+vis:RdfsLabelProperty a vo:PropertyType;
+	# name the property type
+	rdfs:label "Title"@en;
+	# add some description
+	rdfs:comment "Add some title"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType rdfs:label;
+	vo:dataType "STRING";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "true"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisNodeType, vis:VisNetworkNode; 
+.
+vis:IdentifierProperty a vo:PropertyType;
+	# name the property type
+	rdfs:label "Key"@en;
+	# add some description
+	rdfs:comment "Add some title"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType rdfs:label;
+	vo:dataType "STRING";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisNodeType, vis:VisNetworkNode; 
+.
+
+vis:RdfsCommentProperty a vo:PropertyType;
+	# name the property type
+	rdfs:label "Comment"@en;
+	# add some description
+	rdfs:comment "Add some title"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType rdfs:comment;
+	vo:dataType "TEXTAREA";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "true"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisNodeType, vis:VisNetworkNode; 
+	.
+vis:CreatedProperty a vo:PropertyType;
+	rdfs:label "Date Created"@en;
+	rdfs:label "Erstelldatum"@de;
+	# add some description
+	rdfs:comment "Date of resource creation"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType dcterms:created;
+	vo:dataType "DATE";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "false"^^xsd:boolean;
+	vo:required "false"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisNodeType, vis:VisNetworkNode;
+	. 
+vis:MultiValueProperty a vo:PropertyType;
+	# name the property type
+	rdfs:label "Multiple Values"@en;
+	# add some description
+	rdfs:comment "are multiple values allowed"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType vo:multiValue;
+	vo:dataType "BOOLEAN";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisPropertyType; 
+	.
+vis:MultiLanguageProperty a vo:PropertyType;
+	# name the property type
+	rdfs:label "Multiple Languages"@en;
+	# add some description
+	rdfs:comment "are multiple languages allowed"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType vo:multiLingual;
+	vo:dataType "BOOLEAN";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisPropertyType; 
+	.
+
+vis:IsRequiredProperty a vo:PropertyType;
+	# name the property type
+	rdfs:label "Required"@en;
+	# add some description
+	rdfs:comment "Valuie is Required"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType vo:required;
+	vo:dataType "BOOLEAN";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisPropertyType; 
+	.
+vis:IsEditableProperty a vo:PropertyType;
+	# name the property type
+	rdfs:label "Required"@en;
+	# add some description
+	rdfs:comment "Valuie is Required"@en;
+	# denote the rdfType to use when storing an instanceo of the LabelProperty
+	vo:visType vo:editable;
+	vo:dataType "BOOLEAN";
+	# specify multilingual, editable, multiple values for the property instances
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	
+	vo:isPropertyOf vis:VisPropertyType; 
+	.
+
+vis:ColorProperty a vo:PropertyType;
+	rdfs:label "UI Color"@en;
+	vo:visType vo:color;
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	vo:isPropertyOf vis:VisNodeType, vis:VisEdgeType;
+	.
+vis:ToChildrenProperty a vo:PropertyType;
+	rdfs:label "Hierarchy Property"@en;
+	vo:visType vo:toChildren;
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "true"^^xsd:boolean;
+	vo:dataType "URI";
+	vo:editable "true"^^xsd:boolean;
+	vo:required "false"^^xsd:boolean;
+	vo:isPropertyOf vis:VisNodeType;
+	.
+vis:InNetworkProperty a vo:PropertyType;
+	rdfs:label "Link to Network"@en;
+	vo:visType vo:toChildren;
+	vo:dataType "URI";
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	vo:isPropertyOf vis:VisNodeType;
+	.
+
+vis:ImageProperty a vo:PropertyType;
+	rdfs:label "UI Image"@en;
+	vo:visType vo:color;
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	vo:isPropertyOf vis:VisNodeType, vis:VisEdgeType;
+	.
+
+vis:DisplayTypeProperty a vo:PropertyType;
+	rdfs:label "UI Display Type"@en;
+	vo:visType vo:dataType;
+	vo:dataType "SELECT";
+	
+	vo:multiLingual "false"^^xsd:boolean;
+	vo:multiValue "false"^^xsd:boolean;
+	vo:editable "true"^^xsd:boolean;
+	vo:required "true"^^xsd:boolean;
+	vo:isPropertyOf vis:VisPropertyType;
+	vo:hasPropertyValue [
+		a vo:PropertyValueType;
+		dcterms:identifier "BOOLEAN";
+		rdfs:label "Checkbox"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "URI";
+		rdfs:label "URI"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "STRING";
+		rdfs:label "Textfield"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "TEXTAREA";
+		rdfs:label "Multiline Textfield"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "INTEGER";
+		rdfs:label "Integer Values"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "NUMBER";
+		rdfs:label "Double Values"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "LANGUAGE";
+		rdfs:label "Language"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "DATE";
+		rdfs:label "Date"@en
+	],
+	[
+		a vo:PropertyValueType;
+		dcterms:identifier "DATETIME";
+		rdfs:label "Date & Time"@en
+	];
+	.
+
+#
+# edge type properties
+#
+	

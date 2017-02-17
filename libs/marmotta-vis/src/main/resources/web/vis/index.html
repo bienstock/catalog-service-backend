@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="vis/vis-network.min.js"></script>
+		<script src="vis/vis.min.js"></script>
+		<script src="vis/vis-network.min.js"></script>
+		<script src="js/main.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="vis/vis.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+		<title>SRFG ViZ Tool</title>
+		
+	</head>
+	
+	<body onload="focus()">
+	
+		<div id="wrapper-login" style="display:none;">
+		
+			<div class="row" style="margin:0 !important;" id="error-outer"></div>
+			<div class="row" style="margin:0 !important;">
+				<div class="col-md-12">
+					<center><h4>POWER2DM Login</h4></center>
+				</div>
+			</div>
+			<div class="row" style="margin:0 !important;">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Login</h3>
+						</div>
+						<div class="panel-body">
+							<form id="login" name="loginform" action="" method="POST" accept-charset="UTF-8" role="form">
+								<fieldset>
+									<div class="form-group">
+										<input id="username" class="form-control" name="username" type="text" value="" placeholder="Username">
+									</div>
+									<div class="form-group">
+										<input id="password" class="form-control" name="password" type="password" value="" placeholder="Password">
+									</div>
+								</fieldset>
+							</form>
+							<div><button class="btn btn-lg btn-success btn-block" onclick="login()">Login</button></div>
+						</div>
+					</div>
+					<div class="space"><center><img src="img/logo.png" style="width:50%;"/></center></div>
+				</div>
+			</div>
+			<script>
+				$("#password").keypress(function(event){
+					var keycode = (event.keyCode ? event.keyCode : event.which);
+					if (keycode == '13'){
+						login();  
+					}
+				});
+			</script>
+			
+		</div>
+	
+		<div id="wrapper-tool">
+	
+			<div id="unsaved-indicator" style="display:none;">
+				<span class="label label-danger">There are unsaved changes</span>
+			</div>
+		
+			<div id="flow-select-outer" class="input-group">
+				<div class="input-group-btn">
+					<button class="btn btn-default" type="button" title="Reload" onclick="reload();">
+						<i class="glyphicon glyphicon-restart"></i>
+					</button>
+				</div>
+				<span class="input-group-addon">Workflow</span>
+				<select id="flow-select" class="form-control"></select>			
+				<div class="input-group-btn">
+					<button class="btn btn-default" type="button" title="New" onclick="newFlow();">
+						<i class="glyphicon glyphicon-file"></i>
+					</button>
+					<button class="btn btn-default" type="button" title="Delete" onclick="deleteFlow();">
+						<i class="glyphicon glyphicon-trash"></i>
+					</button>
+					<button class="btn btn-success" type="button" title="Save" onclick="saveFlow();">
+						<i class="glyphicon glyphicon-floppy-disk"></i>
+					</button>
+				</div>
+				</span>
+			</div>
+		
+			<div id="network-container"></div>
+			
+			<div class="modal fade" id="addNode" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal">
+							<div class="modal-header">
+								<h4 id="nodeOperation">Add Node</h4>
+							</div>
+							<div id="addNodeBody" class="modal-body"></div>
+							<div class="modal-footer">
+								<div class='modal-tag'>* Required field</div>
+								<button type="button" class="btn btn-default" id="cancelNodeButton" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" id="saveNodeButton">Apply</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal fade" id="addEdge" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal">
+							<div class="modal-header">
+								<h4 id="edgeOperation">Add Edge</h4>
+							</div>
+							<div id="addEdgeBody" class="modal-body"></div>
+							<div class="modal-footer">
+								<div class='modal-tag'>* Required field</div>
+								<button type="button" class="btn btn-default" id="cancelEdgeButton" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary" id="saveEdgeButton">Apply</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal fade" id="saveFlow" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal">
+							<div class="modal-header">
+								<h4>Save Worflow</h4>
+							</div>
+							<div class="modal-body">                                   
+								<div class="input-group space">
+									<label class="input-group-addon">Title</label>
+									<input type="text" class="form-control" id="saveFlowTitle" placeholder="Title">
+								</div>
+								<div class="input-group">
+									<label class="input-group-addon">Comment</label>
+									<input type="text" class="form-control" id="saveFlowComment" placeholder="Comment">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-success" onclick="saveFlowConfirm(false)">Save as new workflow</button>
+								<button type="button" class="btn btn-success" id="updateFlowButton" onclick="saveFlowConfirm(true)">Update workflow</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal fade" id="deleteFlow" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal">
+							<div class="modal-header">
+								<h4>Delete Worflow</h4>
+							</div>
+							<div class="modal-body">                                   
+								You are about to delete the current workflow.<br/>
+								Are you sure?
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-danger" onclick="deleteFlowConfirm()">Delete</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal fade" id="changeFlow" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal">
+							<div class="modal-header">
+								<h4>Leave Workflow</h4>
+							</div>
+							<div class="modal-body">                                   
+								There are unsaved changes in the current workflow.<br/>
+								Do you want to proceed without saving?
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Go back</button>
+								<button type="button" class="btn btn-primary" onclick="changeFlowConfirm()">Proceed</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal fade" id="toolTip" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form-horizontal">
+							<div class="modal-header">
+								<h4>Tooltip</h4>
+							</div>
+							<div id="toolTipBody" class="modal-body">                                   
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		
+	</body>
+
+</html>
