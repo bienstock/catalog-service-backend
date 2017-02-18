@@ -18,9 +18,7 @@
    		<!--  include third -party libs -->
 		<module>../libs/marmotta-alibaba</module>
 		<!-- use selected/required alibaba modules -->
-		<module>../libs/alibaba/object-composition</module> 
-		<module>../libs/alibaba/object-repository</module> 
-		<module>../libs/alibaba/blob-store</module>
+		<module>../libs/alibaba</module> 
 		<!--  marmotta graph visualization --> 
    		<module>../libs/marmotta-vis</module>
    		<!--  semantic search module including dependencies -->
