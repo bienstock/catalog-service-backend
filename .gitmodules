@@ -4,6 +4,3 @@
 [submodule "libs/skosjs"]
 	path = libs/skosjs
 	url = https://github.com/tkurz/skosjs
-[submodule "libs/alibaba"]
-	path = libs/alibaba
-	url = https://bitbucket.org/openrdf/alibaba
