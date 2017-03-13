@@ -20,6 +20,13 @@
 
     <artifactId>marmotta-vis</artifactId>
     <packaging>jar</packaging>
+	<repositories>
+		<repository>
+			<id>Marmotta Snapshots</id>
+			<url>https://repository.apache.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+	
 
 
 	<name>Marmotta Module: Visualisation, Editing of Catalogs</name>
