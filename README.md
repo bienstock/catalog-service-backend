@@ -21,6 +21,6 @@ This repository represent the Apache Marmotta backend of the Catalog Microservic
 
 General Info: https://console.ng.bluemix.net/docs/containers/container_cli_reference_cfic.html#container_cli_reference_cfic
 
-1. Install and log in to Bluemix CLI: `http://clis.ng.bluemix.net/ui/home.html`
-2. Install the container plugin `https://console.ng.bluemix.net/docs/containers/container_cli_cfic_install.html#container_cli_cfic_install`
+1. Install and log in to Bluemix CLI: http://clis.ng.bluemix.net/ui/home.html
+2. Install the container plugin https://console.ng.bluemix.net/docs/containers/container_cli_cfic_install.html#container_cli_cfic_install
 3. Run `./run.sh bx-deploy`
