@@ -15,7 +15,7 @@ services:
   marmotta-db:
     image: postgres:9
     ports:
-      - "5432:5432"
+      - "5440:5432"
     environment:
      - POSTGRES_PASSWORD=changeme
      - POSTGRES_USER=root
