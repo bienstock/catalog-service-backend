@@ -92,4 +92,13 @@ public class WildcardAwareBackend extends ContextAwareSesameConnectionBackend {
     	vl.add(val);
     	return vl;
     }
+    public Collection<Value> createDynLiteralCollection(String name, Collection<String> values) {
+    	HashSet<Value> vl = new HashSet<>();
+    	for ( String value : values ) {
+    		Value val = new DynKiwiLiteral(name, value);
+    		vl.add(val);
+    	}
+    	return vl;
+    	
+    }
 }
