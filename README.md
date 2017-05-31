@@ -24,6 +24,6 @@ General Info: https://console.ng.bluemix.net/docs/containers/container_cli_refer
 1. Install Docker and login
 2. Install Bluemix CLI and log in (http://clis.ng.bluemix.net/ui/home.html)
     * Example:`bx login -a https://api.eu-gb.bluemix.net -u <usermail> -o hrlbmix@il.ibm.com -s Nimble`    
-3. Install the container plugin ()https://console.ng.bluemix.net/docs/containers/container_cli_cfic_install.html#container_cli_cfic_install)
+3. Install the container plugin (https://console.ng.bluemix.net/docs/containers/container_cli_cfic_install.html#container_cli_cfic_install)
     * Example: `bx plugin install IBM-Containers -r Bluemix`
 4. Run `./run.sh bx-deploy`
