@@ -5,7 +5,7 @@ if [ "$1" == "run" ]; then
     mvn clean install -DskipTests
 
     # run docker compose
-    docker-compose up
+    docker-compose up --build
 
 elif [ "$1" == "bx-deploy" ]; then
 

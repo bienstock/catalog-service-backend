@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   marmotta:
@@ -11,6 +11,8 @@ services:
         DB_PASS: changeme
     ports:
       - "8080:8080"
+    volumes:
+      - settings-volume:/var/lib/marmotta/
 
   marmotta-db:
     image: postgres:9
@@ -20,3 +22,7 @@ services:
      - POSTGRES_PASSWORD=changeme
      - POSTGRES_USER=root
      - POSTGRES_DB=marmotta
+
+volumes:
+  # settings volume
+  settings-volume: {}
