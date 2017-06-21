@@ -21,7 +21,7 @@ elif [ "$1" == "bx-deploy" ]; then
         --build-arg DB_PASS=changeme .
 
     # stop and delete current container (necessary for update)
-    echo "********* Sbix topping and removing old container *********"
+    echo "********* Stopping and removing old container *********"
     bx ic stop marmotta-backend
     bx ic wait marmotta-backend
     bx ic rm --force marmotta-backend
