@@ -11,6 +11,8 @@ pipeline {
         parallel(
           "Clone & Build": {
             git(url: 'https://github.com/bienstock/catalog-service-backend.git', branch: 'master')
+            sh 'git submodule init'
+            sh 'git submodule update'
             withMaven(maven: 'M339') {
               sh 'mvn clean install -DskipTests=true'
             }
