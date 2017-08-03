@@ -13,7 +13,7 @@ pipeline {
             git(url: 'https://github.com/bienstock/catalog-service-backend.git', branch: 'master')
             sh 'sleep 1000'
             withMaven(maven: 'M339') {
-              sh 'mvn clean install'
+              sh 'mvn clean install -DskipTests=true'
             }
             
             
