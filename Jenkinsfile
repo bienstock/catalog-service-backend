@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'nimble-jenkins-slave'
+    }
+    
+  }
   stages {
     stage('Clone & Build') {
       steps {
