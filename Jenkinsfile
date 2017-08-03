@@ -14,7 +14,7 @@ pipeline {
             sh 'git submodule init'
             sh 'git submodule update'
             withMaven(maven: 'M339') {
-              sh 'mvn clean install -DskipTests=true'
+              sh 'mvn  install -DskipTests=true'
             }
             
             
