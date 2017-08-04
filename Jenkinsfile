@@ -1,8 +1,9 @@
 pipeline {
   agent {
     node {
+          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
       label 'nimble-jenkins-slave'
-    }
+          }}
     
   }
   stages {
@@ -26,7 +27,6 @@ pipeline {
         )
       }
     }
-    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
@@ -38,7 +38,6 @@ pipeline {
         app.push("latest")
         }
        )
-      }
       }
     }
   }
