@@ -27,23 +27,13 @@ pipeline {
       }
     }
     stage('Build image') {
-      deff app
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("pashok2398/catalog-service-backend")
-    }
-
-
-    stage('Push image') {
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
+        deff app = docker.build("pashok2398/catalog-service-backend")
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }
-     }
+        app.push("${env.BUILD_NUMBER}")
+        app.push("latest")
+    }
   }
 }
