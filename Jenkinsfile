@@ -26,8 +26,8 @@ pipeline {
         )
       }
     }
+    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
     stage('Build image') {
-      docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
       steps {
