@@ -27,10 +27,11 @@ pipeline {
       }
     }
     stage('Build image') {
+      deff app
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        docker.build("pashok2398/catalog-service-backend")
+        app = docker.build("pashok2398/catalog-service-backend")
     }
 
 
@@ -40,8 +41,8 @@ pipeline {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            docker.push("${env.BUILD_NUMBER}")
-            docker.push("latest")
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
      }
   }
