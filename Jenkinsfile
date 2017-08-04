@@ -28,12 +28,12 @@ pipeline {
     }
     stage('Docker Image Build') {
       steps {
-        sh 'docker build -t registry.eu-gb.bluemix.net/nimble/matmota-backend .'
+        sh 'docker build -t registry.eu-gb.bluemix.net/nimble/marmota-backend .'
       }
     }
     stage('Push Docker Image') {
       steps {
-        sh 'docker push registry.eu-gb.bluemix.net/nimble/matmota-backend'
+        sh 'docker push registry.eu-gb.bluemix.net/nimble/marmota-backend'
       }
     }
   }
