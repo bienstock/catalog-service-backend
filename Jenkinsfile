@@ -1,6 +1,7 @@
 pipeline {
   agent {
     node {
+      def app
       label 'nimble-jenkins-slave'
     }
     
