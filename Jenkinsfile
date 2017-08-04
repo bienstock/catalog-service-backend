@@ -26,5 +26,10 @@ pipeline {
         )
       }
     }
+    stage('Docker Image Build') {
+      steps {
+        sh 'docker build -t registry.eu-gb.bluemix.net/nimble/matmota-backend .'
+      }
+    }
   }
 }
