@@ -26,22 +26,5 @@ pipeline {
         )
       }
     }
-    stage('Docker') {
-      steps {
-        parallel(
-          "Docker": {
-            node(label: 'nimble-jenkins-slave') {
-              sh 'docker build'
-            }
-            
-            
-          },
-          "shell": {
-            sh 'build'
-            
-          }
-        )
-      }
-    }
   }
 }
