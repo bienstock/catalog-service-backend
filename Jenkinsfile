@@ -28,7 +28,10 @@ pipeline {
     }
     stage('Docker') {
       steps {
-        sh 'build'
+        withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://registry.hub.docker.com']) {
+                    def app = docker.build("pashok2398/nimble",'.')
+                    app.push()
+        }
       }
     }
   }
