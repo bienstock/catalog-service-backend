@@ -28,10 +28,19 @@ pipeline {
     }
     stage('Docker') {
       steps {
-        node(label: 'nimble-jenkins-slave') {
-          sh 'docker build'
-        }
-        
+        parallel(
+          "Docker": {
+            node(label: 'nimble-jenkins-slave') {
+              sh 'docker build'
+            }
+            
+            
+          },
+          "shell": {
+            sh 'build'
+            
+          }
+        )
       }
     }
   }
