@@ -28,9 +28,11 @@ pipeline {
     }
     stage('Docker') {
       steps {
+        node(label: 'nimble-jenkins-slave') {
         withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://registry.hub.docker.com']) {
                     def app = docker.build("pashok2398/nimble",'.')
                     app.push()
+          }
         }
       }
     }
