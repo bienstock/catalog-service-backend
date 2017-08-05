@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'nimble-jenkins-slave'
+      label 'jenkins-slave'
     }
     
   }
@@ -10,7 +10,7 @@ pipeline {
       steps {
         parallel(
           "Clone & Build": {
-            git(url: 'https://github.com/bienstock/catalog-service-backend.git', branch: 'master')
+            git(url: 'https://github.com/repo.git', branch: 'master')
             sh 'git submodule init'
             sh 'git submodule update'
             withMaven(maven: 'M339') {
@@ -20,7 +20,7 @@ pipeline {
             
           },
           "Slack message": {
-            slackSend 'Started Nimble-Jenkins build ${env.BUILD_ID} of ${env.JOB_NAME}'
+            slackSend 'Started Project-Jenkins build ${env.BUILD_ID} of ${env.JOB_NAME}'
             
           }
         )
@@ -28,11 +28,9 @@ pipeline {
     }
     stage('Docker') {
       steps {
-        node(label: 'nimble-jenkins-slave') {
-        withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://registry.hub.docker.com']) {
-                    def app = docker.build("pashok2398/nimble",'.')
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+                    def app = docker.build("repo/image",'.')
                     app.push()
-          }
         }
       }
     }
