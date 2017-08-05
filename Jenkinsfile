@@ -26,5 +26,14 @@ pipeline {
         )
       }
     }
+    stage('Docker') {
+      steps {
+        node(label: 'nimble-jenkins-slave') {
+          sh 'docker build'
+          sh 'docker push'
+        }
+        
+      }
+    }
   }
 }
