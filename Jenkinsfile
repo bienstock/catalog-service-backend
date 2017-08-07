@@ -20,7 +20,7 @@ pipeline {
             
           },
           "Slack message": {
-            slackSend 'Started Project-Jenkins build ${env.BUILD_ID} of ${env.JOB_NAME}'
+            slackSend 'Started build no. ${BUILD_ID} of ${JOB_NAME}'
             
           }
         )
