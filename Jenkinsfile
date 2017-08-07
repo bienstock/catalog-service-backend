@@ -28,10 +28,6 @@ pipeline {
     }
     stage('Docker') {
       steps {
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                    def app = docker.build("repo/image",'.')
-                    app.push()
-        }
       }
     }
   }
