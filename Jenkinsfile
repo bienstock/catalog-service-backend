@@ -2,7 +2,7 @@ node ('nimble-jenkins-slave') {
     def app
     stage('Clone & Build') {
             slackSend 'Started build no. ${BUILD_ID} of ${JOB_NAME}'
-            git(url: 'https://github.com/repo.git', branch: 'master')
+            git(url: 'https://github.com/bienstock/catalog-service-backend.git', branch: 'master')
             sh 'git submodule init'
             sh 'git submodule update'
             withMaven(maven: 'M339') {
